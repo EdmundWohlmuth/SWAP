@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static List<PlayerController> activePlayers = new List<PlayerController>();
 
     public List<PlayerController> _activePlayers = new List<PlayerController>();
+    public List<WeaponData> weaponType = new List<WeaponData>();
 
     [Header("Keybinds")]
     public KeyCode nextSWAP = KeyCode.RightBracket;

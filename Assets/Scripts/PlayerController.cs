@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode left = KeyCode.A;
     public KeyCode right = KeyCode.D;
     public KeyCode aim = KeyCode.Mouse1;
+    public KeyCode fire = KeyCode.Mouse0;
 
     [Header("CharacterStats")]
     public bool isSelected;
@@ -38,6 +39,11 @@ public class PlayerController : MonoBehaviour
         else
         {
 
+        }
+
+        if (Input.GetKeyDown(fire))
+        {
+            Shoot();
         }
     }
 
@@ -77,5 +83,10 @@ public class PlayerController : MonoBehaviour
             // sets the rotation value
             transform.localRotation = Quaternion.Slerp(current, rotation, rotationSpeed * Time.deltaTime);
         }
+    }
+
+    void Shoot()
+    {
+
     }
 }
