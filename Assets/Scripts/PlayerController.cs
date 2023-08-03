@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Refrences")]
     public Camera mainCamera;
     public GameObject crossHair;
+    public WeaponManager weaponManager;
 
     [Header("Keybinds")]
     public KeyCode forward = KeyCode.W;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        weaponManager = GetComponent<WeaponManager>();
         mainCamera = GameManager.mainCamera;
         GameManager.activePlayers.Add(this.GetComponent<PlayerController>());
     }
@@ -35,16 +37,15 @@ public class PlayerController : MonoBehaviour
         {
             MoveCharacter();
             AimCharacter();
+
+            if (Input.GetKeyDown(fire)) weaponManager.Shoot();
         }
         else
         {
 
         }
 
-        if (Input.GetKeyDown(fire))
-        {
-            Shoot();
-        }
+
     }
 
     void MoveCharacter()
@@ -83,10 +84,5 @@ public class PlayerController : MonoBehaviour
             // sets the rotation value
             transform.localRotation = Quaternion.Slerp(current, rotation, rotationSpeed * Time.deltaTime);
         }
-    }
-
-    void Shoot()
-    {
-
     }
 }

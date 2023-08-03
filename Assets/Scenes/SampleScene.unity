@@ -1765,6 +1765,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 193459601309538506, guid: 9cf24eac59153954f8c4234e5ac4d98c, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1709019657}
+    - target: {fileID: 193459601309538506, guid: 9cf24eac59153954f8c4234e5ac4d98c, type: 3}
       propertyPath: weaponData
       value: 
       objectReference: {fileID: 11400000, guid: 8e4143aa5996d14458e67701a7352c2e, type: 2}
@@ -2140,6 +2144,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 193459601309538506, guid: 9cf24eac59153954f8c4234e5ac4d98c, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1709019657}
     - target: {fileID: 193459601309538506, guid: 9cf24eac59153954f8c4234e5ac4d98c, type: 3}
       propertyPath: weaponData
       value: 
@@ -2709,6 +2717,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8181880334992450699, guid: 008025916e3abeb438d84e3d9d96dfac, type: 3}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2723,9 +2735,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 193459601309538506, guid: 9cf24eac59153954f8c4234e5ac4d98c, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1709019657}
+    - target: {fileID: 193459601309538506, guid: 9cf24eac59153954f8c4234e5ac4d98c, type: 3}
       propertyPath: weaponData
       value: 
       objectReference: {fileID: 11400000, guid: 8e4143aa5996d14458e67701a7352c2e, type: 2}
+    - target: {fileID: 233591419574115444, guid: 9cf24eac59153954f8c4234e5ac4d98c, type: 3}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 314033146581516552, guid: 9cf24eac59153954f8c4234e5ac4d98c, type: 3}
       propertyPath: m_RootOrder
       value: 6
