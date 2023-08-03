@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: BULLET COLLISIONS SEND CHARACTERS IT HITS, FIX PLS
 public class WeaponManager : MonoBehaviour
 {
     public Transform orign;
     public GameObject bullet;
     public GameObject crosshair;
 
-    bool canShoot;
+    public bool canShoot;
     public bool isAi;
 
     float fireRateTimer;
@@ -28,12 +29,14 @@ public class WeaponManager : MonoBehaviour
     void Start()
     {
         ammo = weaponData.ammoBeforeReload;
+        canShoot = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!canShoot) FireRate();
+        if (ammo <= 0) Reload();
     }
 
     public void Shoot()
@@ -43,9 +46,10 @@ public class WeaponManager : MonoBehaviour
             Debug.LogError("weaponData not found");
             return;
         }
-       
 
-        if (ammo <= 0) Reload();
+
+        
+                
         else if (canShoot)
         {
             //Debug.Log("BANG!");
@@ -64,17 +68,28 @@ public class WeaponManager : MonoBehaviour
                 GameObject currentBullet = Instantiate(bullet, orign.position, Quaternion.identity);
                 currentBullet.GetComponent<Rigidbody2D>().AddForce(bulletDirectrion.normalized * bulletSpeed, ForceMode2D.Impulse);
             }
-            
+
 
         }
     }
 
     void Reload()
     {
-        Debug.Log("Click");
+        //Debug.Log("Click");
+        if (reloadTimer >= 2)
+        {
+            reloadTimer = 0; //temp magic numbers
+            ammo = weaponData.ammoBeforeReload;
+            canShoot = true;
+        }
+        else
+        {
+            reloadTimer += Time.deltaTime;
+            canShoot = false;
+        }
     }
 
-    void FireRate()
+    void FireRate() // AUTO SHOOT IS NOT WORKING
     {
         if (weaponData == null)
         {

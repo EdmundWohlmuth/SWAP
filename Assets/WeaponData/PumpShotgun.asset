@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: PumpShotgun
   m_EditorClassIdentifier: 
   sound: {fileID: 0}
-  weaponType: 0
+  weaponType: 1
   ammoBeforeReload: 6
   damagePerProjectile: 1
   projectilesPerShot: 8
-  projectileSpeed: 30
   fireRate: 1
-  bulletSpread: 8
+  bulletSpread: 0.8
   isAutoFire: 0

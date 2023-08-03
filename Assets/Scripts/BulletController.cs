@@ -18,13 +18,15 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Physics2D.IgnoreCollision(gameObject.GetComponent<CircleCollider2D>(), collision.collider);
+       
         if (collision.gameObject.layer == 11)
         {
             // damage enemy by calling enemys HealthManager()
             //Debug.Log("Hit enemy");
             Destroy(gameObject);
         }
-        else
+        else if (collision.gameObject.layer != 9)
         {
             // richochet sfx
             //Debug.Log("Hit" + collision.gameObject.name);

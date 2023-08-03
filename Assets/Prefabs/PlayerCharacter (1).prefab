@@ -275,6 +275,7 @@ MonoBehaviour:
   orign: {fileID: 8695392053464987252}
   bullet: {fileID: 7660559797289209896, guid: 09bbf31417b773843a6df6a6ebd4a8a7, type: 3}
   crosshair: {fileID: 0}
+  canShoot: 0
   isAi: 0
   currentWeapon: 0
   weaponData: {fileID: 11400000, guid: 8e4143aa5996d14458e67701a7352c2e, type: 2}
@@ -305,7 +306,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 0
 --- !u!1 &7082782800719898207
 GameObject:
   m_ObjectHideFlags: 0
