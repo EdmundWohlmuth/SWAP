@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: BULLET COLLISIONS SEND CHARACTERS IT HITS, FIX PLS
 public class WeaponManager : MonoBehaviour
 {
     public Transform orign;
@@ -53,7 +52,7 @@ public class WeaponManager : MonoBehaviour
         else if (canShoot)
         {
             //Debug.Log("BANG!");
-            ammo--;
+            
             Vector3 bulletDirectrion = crosshair.transform.position - orign.position;
 
             // instantiate bullet
@@ -69,17 +68,19 @@ public class WeaponManager : MonoBehaviour
                 currentBullet.GetComponent<Rigidbody2D>().AddForce(bulletDirectrion.normalized * bulletSpeed, ForceMode2D.Impulse);
             }
 
-
+            ammo--;
+            fireRateTimer = 0;
+            canShoot = false;
         }
     }
 
     void Reload()
     {
         //Debug.Log("Click");
-        if (reloadTimer >= 2)
+        if (reloadTimer >= weaponData.reloadTime)
         {
-            reloadTimer = 0; //temp magic numbers
             ammo = weaponData.ammoBeforeReload;
+            reloadTimer = 0;
             canShoot = true;
         }
         else
@@ -89,7 +90,7 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    void FireRate() // AUTO SHOOT IS NOT WORKING
+    void FireRate()
     {
         if (weaponData == null)
         {

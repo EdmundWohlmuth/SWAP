@@ -17,6 +17,7 @@ MonoBehaviour:
   ammoBeforeReload: 30
   damagePerProjectile: 5
   projectilesPerShot: 1
+  reloadTime: 2
   fireRate: 0.2
   bulletSpread: 0.5
   isAutoFire: 1

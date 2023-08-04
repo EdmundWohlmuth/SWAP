@@ -18,6 +18,7 @@ public class WeaponData : ScriptableObject
     public int ammoBeforeReload;
     public int damagePerProjectile;
     public int projectilesPerShot;
+    public float reloadTime;
 
     public float fireRate;
     public float bulletSpread;

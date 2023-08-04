@@ -18,8 +18,13 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Physics2D.IgnoreCollision(gameObject.GetComponent<CircleCollider2D>(), collision.collider);
-       
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Physics2D.IgnoreCollision(gameObject.GetComponent<CircleCollider2D>(), collision.gameObject.GetComponent<Collider2D>());
+
         if (collision.gameObject.layer == 11)
         {
             // damage enemy by calling enemys HealthManager()

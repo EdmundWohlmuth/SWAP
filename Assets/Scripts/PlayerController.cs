@@ -38,7 +38,16 @@ public class PlayerController : MonoBehaviour
             MoveCharacter();
             AimCharacter();
 
-            if (Input.GetKeyDown(fire)) weaponManager.Shoot();
+            if (weaponManager.weaponData.isAutoFire)
+            {
+                if (Input.GetKey(fire)) weaponManager.Shoot();
+            }
+            else
+            {
+                if (Input.GetKeyDown(fire)) weaponManager.Shoot();
+            }
+
+            
         }
         else
         {
