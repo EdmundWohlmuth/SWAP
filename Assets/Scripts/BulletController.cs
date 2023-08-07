@@ -4,22 +4,8 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
+    public int damage;
+    bool isAi;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,8 +14,18 @@ public class BulletController : MonoBehaviour
         if (collision.gameObject.layer == 11)
         {
             // damage enemy by calling enemys HealthManager()
-            //Debug.Log("Hit enemy");
+            // Debug.Log("Hit enemy");
+            // AI don't deal Freindly fire damage
+            if (!isAi) collision.gameObject.GetComponentInParent<HealthController>().TakeDamage(damage);
+            //if (!isAi) Debug.Log(collision.gameObject.name);
             Destroy(gameObject);
+        }
+        if (collision.gameObject.layer == 10)
+        {
+            //Debug.Log("Hit player");
+            if (isAi) collision.gameObject.GetComponent<HealthController>().TakeDamage(damage);
+            // deal less damage on freindly fire?
+            Destroy(gameObject);           
         }
         else if (collision.gameObject.layer != 9)
         {

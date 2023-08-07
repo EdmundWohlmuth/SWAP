@@ -15,7 +15,7 @@ MonoBehaviour:
   sound: {fileID: 0}
   weaponType: 1
   ammoBeforeReload: 6
-  damagePerProjectile: 1
+  damagePerProjectile: 2
   projectilesPerShot: 8
   reloadTime: 4
   fireRate: 1

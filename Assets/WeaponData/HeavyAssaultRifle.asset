@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7030f760a26fd724fb9eff3a93c528b3, type: 3}
-  m_Name: LightAssaultRifle
+  m_Name: HeavyAssaultRifle
   m_EditorClassIdentifier: 
   sound: {fileID: 0}
-  weaponType: 0
-  ammoBeforeReload: 30
-  damagePerProjectile: 4
+  weaponType: 4
+  ammoBeforeReload: 20
+  damagePerProjectile: 6
   projectilesPerShot: 1
-  reloadTime: 2
-  fireRate: 0.2
-  bulletSpread: 0.5
+  reloadTime: 4
+  fireRate: 0.35
+  bulletSpread: 0.45
   isAutoFire: 1

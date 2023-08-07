@@ -19,6 +19,12 @@ public class WeaponManager : MonoBehaviour
     {
         LightAssaultRifle,
         PumpShotgun,
+        LightSMG,
+        SemiAutoPistol,
+        HeavyAssaultRifle,
+        FullAutoShotgun,
+        HeavySMG,
+        HeavyRevolver
     }
     public Weapon currentWeapon;
     public WeaponData weaponData;
@@ -66,6 +72,7 @@ public class WeaponManager : MonoBehaviour
 
                 GameObject currentBullet = Instantiate(bullet, orign.position, Quaternion.identity);
                 currentBullet.GetComponent<Rigidbody2D>().AddForce(bulletDirectrion.normalized * bulletSpeed, ForceMode2D.Impulse);
+                currentBullet.GetComponent<BulletController>().damage = weaponData.damagePerProjectile;
             }
 
             ammo--;

@@ -10,7 +10,13 @@ public class WeaponData : ScriptableObject
     public enum WeaponType
     {
         LightAssaultRifle,
-        PumpShotgun
+        PumpShotgun,
+        LightSMG,
+        SemiAutoPistol,
+        HeavyAssaultRifle,
+        FullAutoShotgun,
+        HeavySMG,
+        HeavyRevolver
     }
     public WeaponType weaponType;
 

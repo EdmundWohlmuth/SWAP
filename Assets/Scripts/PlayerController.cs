@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         weaponManager = GetComponent<WeaponManager>();
+        weaponManager.isAi = false;
         mainCamera = GameManager.mainCamera;
         GameManager.activePlayers.Add(this.GetComponent<PlayerController>());
     }
