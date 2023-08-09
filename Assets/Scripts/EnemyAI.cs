@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    LayerMask linecastMask = 1 << 0 | 1 << 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,48 +15,32 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*foreach (PlayerController player in GameManager.gameManager._activePlayers)
-        {
-            RaycastHit2D hit = Physics2D.Linecast(transform.position,
-                                      player.gameObject.transform.position, 11);
-
-            if (hit.collider.gameObject.layer != 10)
-            {
-                Debug.DrawLine(transform.position,
-                           player.gameObject.transform.position, Color.blue);
-                Debug.Log(hit.collider.gameObject.layer);
-            }
-            else if (hit.collider.gameObject.layer == 10)
-            {
-                Debug.DrawLine(transform.position,
-                           player.gameObject.transform.position, Color.red);
-            }
-        }*/
 
         for (int i = 0; i < GameManager.gameManager._activePlayers.Count; i++)
         {
             PlayerController player = GameManager.gameManager._activePlayers[i];
 
             RaycastHit2D hit = Physics2D.Linecast(transform.position,
-                          player.gameObject.transform.position, 11);
+                          player.gameObject.transform.position, linecastMask);
 
-            if (hit.collider.gameObject.layer != 10)
+            if (hit.collider != null)
             {
-                Debug.DrawLine(transform.position,
-                           player.gameObject.transform.position, Color.blue);
-                //Debug.Log(hit.collider.gameObject.layer);
+                Debug.Log("Hit layer: " + hit.collider.gameObject.layer);
+
+                if (hit.collider.transform.parent != null && hit.collider.transform.parent.gameObject.layer != 10)
+                {
+                    Debug.DrawLine(transform.position,
+                               player.gameObject.transform.position, Color.blue);
+                    //Debug.Log(hit.collider.gameObject.layer);
+                }
+                else
+                {
+
+                    Debug.DrawLine(transform.position,
+                               player.gameObject.transform.position, Color.red);
+                }
             }
-            else if (hit.collider.gameObject.layer == 10)
-            {
-                Debug.DrawLine(transform.position,
-                           player.gameObject.transform.position, Color.red);
-            }
+            else Debug.Log("No collider hit.");
         }
     }
-
-    public void Aim()
-    {
-
-    }
-
 }
