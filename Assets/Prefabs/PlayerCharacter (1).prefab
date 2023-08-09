@@ -209,6 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 314033146581516552}
   - component: {fileID: 3093961338567779523}
+  - component: {fileID: 2583263548530402490}
   - component: {fileID: 193459601309538506}
   - component: {fileID: 233591419574115444}
   - component: {fileID: 7178295985464239420}
@@ -260,6 +261,20 @@ MonoBehaviour:
   isSelected: 0
   movementSpeed: 2
   rotationSpeed: 20
+--- !u!114 &2583263548530402490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5250293741531898757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86f0bb8ba9a49e43827a9dca32b1b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 12
+  armorValue: 0
 --- !u!114 &193459601309538506
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class WeaponManager : MonoBehaviour
     float fireRateTimer;
     float reloadTimer;
     int bulletSpeed = 30;
+    public float aiSpreadModifier;
 
     public enum Weapon
     {
@@ -44,7 +45,7 @@ public class WeaponManager : MonoBehaviour
         if (ammo <= 0) Reload();
     }
 
-    public void Shoot()
+    public void Shoot(GameObject target)
     {
         if (weaponData == null)
         {
@@ -57,15 +58,21 @@ public class WeaponManager : MonoBehaviour
                 
         else if (canShoot)
         {
-            //Debug.Log("BANG!");
-            
-            Vector3 bulletDirectrion = crosshair.transform.position - orign.position;
+            //Debug.Log("BANG!");           
+
+            Vector3 bulletDirectrion = target.transform.position - orign.position;
 
             // instantiate bullet
             for (int i = 0; i < weaponData.projectilesPerShot; i++)
             {
+                
                 float spreadX = Random.Range(-weaponData.bulletSpread, weaponData.bulletSpread);
                 float spreadY = Random.Range(-weaponData.bulletSpread, weaponData.bulletSpread);
+                if (isAi)
+                {
+                    spreadX = spreadX * aiSpreadModifier;
+                    spreadY = spreadY * aiSpreadModifier;
+                }
 
                 Vector3 directionWithSpread = bulletDirectrion + new Vector3(spreadX, spreadY, 0f);
                 bulletDirectrion = directionWithSpread;
@@ -73,6 +80,7 @@ public class WeaponManager : MonoBehaviour
                 GameObject currentBullet = Instantiate(bullet, orign.position, Quaternion.identity);
                 currentBullet.GetComponent<Rigidbody2D>().AddForce(bulletDirectrion.normalized * bulletSpeed, ForceMode2D.Impulse);
                 currentBullet.GetComponent<BulletController>().damage = weaponData.damagePerProjectile;
+                if (isAi) currentBullet.GetComponent<BulletController>().isAi = true;
             }
 
             ammo--;

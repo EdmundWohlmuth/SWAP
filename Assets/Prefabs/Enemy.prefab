@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2017776515490511073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7279782098326643137}
+  m_Layer: 11
+  m_Name: origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7279782098326643137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017776515490511073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5213457403311398788}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3124170611648128106
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,6 +43,7 @@ GameObject:
   - component: {fileID: 8181880334992450699}
   - component: {fileID: 3610822429072184453}
   - component: {fileID: 3531046885843114612}
+  - component: {fileID: 6309541195908913391}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
@@ -33,6 +65,7 @@ Transform:
   m_Children:
   - {fileID: 5894299959054092723}
   - {fileID: 8500110819577000028}
+  - {fileID: 7279782098326643137}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75,6 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5165104c653ffb84ea20ab1ce6690f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targets: []
+  weaponManager: {fileID: 6309541195908913391}
 --- !u!114 &3531046885843114612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +124,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   armorValue: 0
+--- !u!114 &6309541195908913391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3124170611648128106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 215d141583c994b4c90a1d7abb733dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orign: {fileID: 7279782098326643137}
+  bullet: {fileID: 7660559797289209896, guid: 09bbf31417b773843a6df6a6ebd4a8a7, type: 3}
+  crosshair: {fileID: 0}
+  canShoot: 0
+  isAi: 1
+  currentWeapon: 3
+  weaponData: {fileID: 11400000, guid: 72ae3772494351d4d8cacbf7a7c9e645, type: 2}
+  ammo: 0
 --- !u!1 &5025065600526273967
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,11 +41,11 @@ public class PlayerController : MonoBehaviour
 
             if (weaponManager.weaponData.isAutoFire)
             {
-                if (Input.GetKey(fire)) weaponManager.Shoot();
+                if (Input.GetKey(fire)) weaponManager.Shoot(crossHair);
             }
             else
             {
-                if (Input.GetKeyDown(fire)) weaponManager.Shoot();
+                if (Input.GetKeyDown(fire)) weaponManager.Shoot(crossHair);
             }
 
             
