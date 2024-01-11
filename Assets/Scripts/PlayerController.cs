@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,27 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     public float rotationSpeed;
 
+    [Header("InputSystem")]
+    public InputActionReference moveAction;
+    public InputActionReference shootAction;
+
+    #region Enable/Disable
+    private void OnEnable()
+    {
+        moveAction.action.Enable();
+        shootAction.action.Enable();
+
+        moveAction.action.performed += ctx => MoveCharacter();
+    }
+    private void OnDisable()
+    {
+        moveAction.action.Disable();
+        shootAction.action.Disable();
+
+        moveAction.action.performed -= ctx => MoveCharacter();
+    }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isSelected)
         {
-            MoveCharacter();
+            //MoveCharacter();
             AimCharacter();
 
             if (weaponManager.weaponData.isAutoFire)
@@ -60,6 +82,11 @@ public class PlayerController : MonoBehaviour
 
     void MoveCharacter()
     {
+        //Vector2 direction = moveAction.action.ReadValue<Vector2>();
+        //Debug.Log(moveAction.action.ReadValue<Vector2>());
+        //transform.position += new Vector3(direction.x, direction.y, 0) * movementSpeed * Time.deltaTime;
+
+
         if (Input.GetKey(forward))
         {
             transform.position += new Vector3(0, 1, 0) * movementSpeed * Time.deltaTime;

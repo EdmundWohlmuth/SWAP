@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Debug.Log("Hit layer: " + hit.collider.gameObject.layer);
+                //Debug.Log("Hit layer: " + hit.collider.gameObject.layer);
 
                 if (hit.collider.transform.parent != null && hit.collider.transform.parent.gameObject.layer != 10)
                 {

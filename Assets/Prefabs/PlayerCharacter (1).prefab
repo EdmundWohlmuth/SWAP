@@ -261,6 +261,8 @@ MonoBehaviour:
   isSelected: 0
   movementSpeed: 2
   rotationSpeed: 20
+  moveAction: {fileID: -8172324038401168942, guid: a55fcc28947d1e541a6a835d40ac2904, type: 3}
+  shootAction: {fileID: 8582252415846749845, guid: a55fcc28947d1e541a6a835d40ac2904, type: 3}
 --- !u!114 &2583263548530402490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +294,7 @@ MonoBehaviour:
   crosshair: {fileID: 0}
   canShoot: 0
   isAi: 0
+  aiSpreadModifier: 0
   currentWeapon: 0
   weaponData: {fileID: 11400000, guid: 8e4143aa5996d14458e67701a7352c2e, type: 2}
   ammo: 30
