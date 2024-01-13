@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
         shootAction.action.Enable();
 
         moveAction.action.performed += ctx => MoveCharacter();
+
+        isSelected = false;
     }
     private void OnDisable()
     {
@@ -53,12 +55,17 @@ public class PlayerController : MonoBehaviour
         GameManager.activePlayers.Add(this.GetComponent<PlayerController>());
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SwitchedTo()
     {
-        if (isSelected)
+        StartCoroutine(CharUpdate());
+    }
+
+    // Update is called once per frame
+    public IEnumerator CharUpdate()
+    {
+        while (isSelected)
         {
-            //MoveCharacter();
+            MoveCharacter();
             AimCharacter();
 
             if (weaponManager.weaponData.isAutoFire)
@@ -69,40 +76,16 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetKeyDown(fire)) weaponManager.Shoot(crossHair);
             }
-
-            
+            yield return null;
         }
-        else
-        {
-
-        }
-
-
+        yield return null;
     }
 
     void MoveCharacter()
     {
-        //Vector2 direction = moveAction.action.ReadValue<Vector2>();
+        Vector2 direction = moveAction.action.ReadValue<Vector2>();
         //Debug.Log(moveAction.action.ReadValue<Vector2>());
-        //transform.position += new Vector3(direction.x, direction.y, 0) * movementSpeed * Time.deltaTime;
-
-
-        if (Input.GetKey(forward))
-        {
-            transform.position += new Vector3(0, 1, 0) * movementSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(backward))
-        {
-            transform.position -= new Vector3(0, 1, 0) * movementSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(left))
-        {
-            transform.position -= new Vector3(1, 0, 0) * movementSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(right))
-        {
-            transform.position += new Vector3(1, 0, 0) * movementSpeed * Time.deltaTime;
-        }
+        transform.position += new Vector3(direction.x, direction.y, 0) * movementSpeed * Time.deltaTime;
     }
     void AimCharacter()
     {

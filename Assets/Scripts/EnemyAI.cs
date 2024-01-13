@@ -9,48 +9,49 @@ public class EnemyAI : MonoBehaviour
     // At some point run through lists to see which target they will aim at, rn its just most recent
     // to be targeted, which is fine
     public WeaponManager weaponManager;
+    bool isAlive;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isAlive = true;
+        StartCoroutine(LineOfSight());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator LineOfSight()
     {
-        LineOfSight();
-    }
-
-    void LineOfSight()
-    {
-        for (int i = 0; i < GameManager.gameManager._activePlayers.Count; i++)
+        while (isAlive)
         {
-            PlayerController player = GameManager.gameManager._activePlayers[i];
-
-            RaycastHit2D hit = Physics2D.Linecast(transform.position,
-                          player.gameObject.transform.position, linecastMask);
-
-            if (hit.collider != null)
+            for (int i = 0; i < GameManager.gameManager._activePlayers.Count; i++)
             {
-                //Debug.Log("Hit layer: " + hit.collider.gameObject.layer);
+                PlayerController player = GameManager.gameManager._activePlayers[i];
 
-                if (hit.collider.transform.parent != null && hit.collider.transform.parent.gameObject.layer != 10)
-                {
-                    Debug.DrawLine(transform.position,
-                               player.gameObject.transform.position, Color.blue);
-                    //Debug.Log(hit.collider.gameObject.layer);
-                }
-                else
-                {
+                RaycastHit2D hit = Physics2D.Linecast(transform.position,
+                              player.gameObject.transform.position, linecastMask);
 
-                    Debug.DrawLine(transform.position,
-                               player.gameObject.transform.position, Color.red);
-                    AimAt(player.gameObject);
+                if (hit.collider != null)
+                {
+                    //Debug.Log("Hit layer: " + hit.collider.gameObject.layer);
+
+                    if (hit.collider.transform.parent != null && hit.collider.transform.parent.gameObject.layer != 10)
+                    {
+                        Debug.DrawLine(transform.position,
+                                   player.gameObject.transform.position, Color.blue);
+                        //Debug.Log(hit.collider.gameObject.layer);
+                    }
+                    else
+                    {
+
+                        Debug.DrawLine(transform.position,
+                                   player.gameObject.transform.position, Color.red);
+                        AimAt(player.gameObject);
+                    }
                 }
+                else Debug.Log("No collider hit.");
             }
-            else Debug.Log("No collider hit.");
+            yield return null;
         }
+        yield return null;
     }
 
     void AimAt(GameObject target)

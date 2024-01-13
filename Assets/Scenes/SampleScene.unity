@@ -300,8 +300,7 @@ MonoBehaviour:
   selectedCharacter: 0
   _activePlayers: []
   weaponType: []
-  nextSWAP: 93
-  lastSWAP: 91
+  swapAction: {fileID: 3162569238320131131, guid: a55fcc28947d1e541a6a835d40ac2904, type: 3}
 --- !u!1 &149939016
 GameObject:
   m_ObjectHideFlags: 0

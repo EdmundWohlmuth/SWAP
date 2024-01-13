@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,8 +17,9 @@ public class GameManager : MonoBehaviour
     public List<WeaponData> weaponType = new List<WeaponData>();
 
     [Header("Keybinds")]
-    public KeyCode nextSWAP = KeyCode.RightBracket;
-    public KeyCode lastSWAP = KeyCode.LeftBracket;
+    public InputActionReference swapAction;
+    /*public KeyCode nextSWAP = KeyCode.RightBracket;
+    public KeyCode lastSWAP = KeyCode.LeftBracket;*/
 
     private void Awake()
     {
@@ -34,14 +36,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
+        swapAction.action.Enable();
 
+        swapAction.action.performed += ctx => CharSelect();
+    }
+    private void OnDisable()
+    {
+        swapAction.action.Disable();
+
+        swapAction.action.performed -= ctx => CharSelect();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
+    {
+        activePlayers[0].isSelected = true;
+    }
+
+
+    void CharSelect()
     {
         //update list
         if (_activePlayers != activePlayers)
@@ -51,38 +65,26 @@ public class GameManager : MonoBehaviour
 
         // if (isInGameplay)
         // select current playable unit
-        if (Input.GetKeyDown(nextSWAP))
-        {
-            NextCharacter();
-        }
-        else if (Input.GetKeyDown(lastSWAP))
-        {
-            LastCharacter();
-        }
+
+        if (swapAction.action.ReadValue<float>() > 0) NextCharacter(true);
+        else if (swapAction.action.ReadValue<float>() < 0) NextCharacter(false);
     }
 
-    public void NextCharacter()
+    public void NextCharacter(bool value)
     {
-        selectedCharacter++;
-        if (selectedCharacter >= activePlayers.Count) selectedCharacter = 0;
-        SelectCharacter();
-    }
-    void LastCharacter()
-    {
-        selectedCharacter--;
-        if (selectedCharacter < 0) selectedCharacter = activePlayers.Count-1;
-        SelectCharacter();
-    }
-    void SelectCharacter()
-    {
-        Debug.Log(activePlayers.Count);
-        for (int i = 0; i < activePlayers.Count; i++)
+        foreach (PlayerController controller in activePlayers)
         {
-            if (selectedCharacter == i)
-            {
-                activePlayers[i].isSelected = true;
-            }
-            else activePlayers[i].isSelected = false;
+            controller.isSelected = false;
         }
+
+
+        if (value) selectedCharacter++;
+        else selectedCharacter--;
+
+        if (selectedCharacter >= activePlayers.Count) selectedCharacter = 0;
+        else if (selectedCharacter < 0) selectedCharacter = activePlayers.Count - 1;
+
+        activePlayers[selectedCharacter].isSelected = true;
+        activePlayers[selectedCharacter].SwitchedTo();
     }
 }
