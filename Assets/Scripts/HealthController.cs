@@ -33,6 +33,9 @@ public class HealthController : MonoBehaviour
     public void KillCharacter()
     {
         //TEMP
+        GameManager.gameManager._activePlayers.Remove(gameObject.GetComponent<PlayerController>());
+/*        gameObject.GetComponent<PlayerController>().DisableInputs();
+        gameObject.GetComponent<PlayerController>().isSelected = false;*/
         Destroy(gameObject);
     }
 }

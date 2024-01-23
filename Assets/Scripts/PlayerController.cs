@@ -33,18 +33,29 @@ public class PlayerController : MonoBehaviour
         moveAction.action.Enable();
         shootAction.action.Enable();
 
-        moveAction.action.performed += ctx => MoveCharacter();
+        /*moveAction.action.performed += ctx => MoveCharacter();*/
 
         isSelected = false;
     }
     private void OnDisable()
     {
-        moveAction.action.Disable();
-        shootAction.action.Disable();
+        if (GameManager.gameManager._activePlayers.Count == 0)
+        {
+            /*moveAction.action.performed -= ctx => MoveCharacter();*/
 
-        moveAction.action.performed -= ctx => MoveCharacter();
+            moveAction.action.Disable();
+            shootAction.action.Disable();
+        }
+
     }
     #endregion
+    /*private void OnDestroy()
+    {
+        moveAction.action.performed -= ctx => MoveCharacter();
+
+        moveAction.action.Disable();
+        shootAction.action.Disable();     
+    }*/
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +74,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     public IEnumerator CharUpdate()
     {
+        if (!isSelected) yield break;
+
         while (isSelected)
         {
             MoveCharacter();
@@ -84,7 +97,7 @@ public class PlayerController : MonoBehaviour
     void MoveCharacter()
     {
         Vector2 direction = moveAction.action.ReadValue<Vector2>();
-        //Debug.Log(moveAction.action.ReadValue<Vector2>());
+        // Debug.Log(moveAction.action.ReadValue<Vector2>());
         transform.position += new Vector3(direction.x, direction.y, 0) * movementSpeed * Time.deltaTime;
     }
     void AimCharacter()
@@ -104,5 +117,14 @@ public class PlayerController : MonoBehaviour
             // sets the rotation value
             transform.localRotation = Quaternion.Slerp(current, rotation, rotationSpeed * Time.deltaTime);
         }
+    }
+
+    public void DisableInputs()
+    {
+        Debug.Log("here");
+        moveAction.action.Disable();
+        shootAction.action.Disable();
+
+        /*moveAction.action.performed -= ctx => MoveCharacter();*/
     }
 }

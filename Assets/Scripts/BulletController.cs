@@ -22,7 +22,7 @@ public class BulletController : MonoBehaviour
         }
         if (collision.gameObject.layer == 10)
         {
-            Debug.Log("Hit player");
+            // Debug.Log("Hit player");
             if (isAi) collision.gameObject.GetComponent<HealthController>().TakeDamage(damage);
             // deal less damage on freindly fire?
             Destroy(gameObject);           
